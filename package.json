@@ -1,34 +1,30 @@
 {
-    "name": "project-template",
-    "version": "1.0.0",
-    "description": "A template to generate well-configured project base for Clytage.",
+    "name": "rinpi",
+    "version": "1.0.0-dev",
+    "description": "Collection of API for discord bot",
     "main": "dist/index.js",
-    "type": "module",
     "scripts": {
         "build": "npm run lint && npm run compile",
         "compile": "tsc --build tsconfig.json",
         "lint": "eslint . --ignore-path .gitignore --ext .ts",
-        "lint:fix": "eslint . --ignore-path .gitignore --ext .ts --fix",
-        "start": "node --es-module-specifier-resolution=node .",
-        "start:dev": "rimraf ./dist && npm run compile && npm start"
+        "lint:fix": "eslint . --ignore-path .gitignore --ext .ts --fix"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Clytage/project-template.git"
+        "url": "git+https://github.com/Clytage/rinpi.git"
     },
     "author": "Clytage <support@clytage.org>",
     "license": "BSD-3-Clause",
     "bugs": {
-        "url": "https://github.com/Clytage/project-template/issues"
+        "url": "https://github.com/Clytage/rinpi/issues"
     },
-    "homepage": "https://github.com/Clytage/project-template#readme",
-    "engines": {
-        "node": ">=16.6.0",
-        "npm": ">=7.0.0"
-    },
+    "homepage": "https://github.com/Clytage/rinpi#readme",
     "eslintConfig": {
         "extends": "@clytage-pkg/eslint-config/typescript",
-        "ignorePatterns": "dist/*"
+        "ignorePatterns": "dist/*",
+        "rules": {
+            "@typescript-eslint/naming-convention": "off"
+        }
     },
     "devDependencies": {
         "@clytage-pkg/eslint-config": "^1.2.0",
