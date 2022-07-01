@@ -1,4 +1,4 @@
-import { simple } from "../../../utils/request/index.js";
+import { extend } from "../../../utils/request.js";
 import {
     Beatmap,
     BeatmapFetchOptions,
@@ -15,7 +15,7 @@ import {
     UserFetchOptions
 } from "./typings";
 
-const request = simple.create("https://osu.ppy.sh/api");
+const request = extend("https://osu.ppy.sh/api");
 
 function fetch(...args: Parameters<typeof request.get>): Promise<any> {
     return request.get(...args).then(res => JSON.parse(res.buffer.toString()));

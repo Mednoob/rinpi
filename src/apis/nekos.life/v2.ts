@@ -1,6 +1,6 @@
-import { simple } from "../../utils/request/index.js";
+import { extend } from "../../utils/request.js";
 
-const request = simple.create("https://nekos.life/api/v2");
+const request = extend("https://nekos.life/api/v2");
 
 function fetch(...args: Parameters<typeof request.get>): Promise<any> {
     return request.get(...args).then(res => JSON.parse(res.buffer.toString()));
@@ -9,8 +9,22 @@ function fetch(...args: Parameters<typeof request.get>): Promise<any> {
 type TR<T extends string> = Record<T, string>;
 type URLResult = TR<"url">;
 
-export const spoiler = (text: string): Promise<string> => fetch("/spoiler", { text }).then((x: TR<"owo">) => x.owo);
-export const owoify = (text: string): Promise<string> => fetch("/owoify", { text }).then((x: TR<"owo">) => x.owo);
+export function spoiler(text: string): Promise<string> {
+    return fetch("/spoiler", {
+        query: {
+            text
+        }
+    }).then((x: TR<"owo">) => x.owo);
+}
+
+export function owoify(text: string): Promise<string> {
+    return fetch("/owoify", {
+        query: {
+            text
+        }
+    }).then((x: TR<"owo">) => x.owo);
+}
+
 export const eightBall = (): Promise<URLResult & { response: string }> => fetch("/8ball");
 export const fact = (): Promise<string> => fetch("/fact").then((x: TR<"fact">) => x.fact);
 export const name = (): Promise<string> => fetch("/name").then((x: TR<"name">) => x.name);
