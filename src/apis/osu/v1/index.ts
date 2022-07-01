@@ -17,8 +17,8 @@ import {
 
 const request = simple.create("https://osu.ppy.sh/api");
 
-function fetch(...args: Parameters<typeof request>): Promise<any> {
-    return request(...args).then(res => JSON.parse(res.buffer.toString()));
+function fetch(...args: Parameters<typeof request.get>): Promise<any> {
+    return request.get(...args).then(res => JSON.parse(res.buffer.toString()));
 }
 
 export const beatmaps = (options: BeatmapFetchOptions): Promise<Beatmap[]> => fetch("/get_beatmaps", options as Record<string, any>);

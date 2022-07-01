@@ -2,8 +2,8 @@ import { simple } from "../../utils/request/index.js";
 
 const request = simple.create("https://nekos.life/api/v2");
 
-function fetch(...args: Parameters<typeof request>): Promise<any> {
-    return request(...args).then(res => JSON.parse(res.buffer.toString()));
+function fetch(...args: Parameters<typeof request.get>): Promise<any> {
+    return request.get(...args).then(res => JSON.parse(res.buffer.toString()));
 }
 
 type TR<T extends string> = Record<T, string>;

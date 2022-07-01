@@ -13,16 +13,26 @@ function addQueryToURL(url: Rinpi.URLLike, query: Record<string, boolean | numbe
     return urlObj;
 }
 
-function create(baseUrl: Rinpi.URLLike): (path: string, query?: Record<string, boolean | number | string>) => ReturnType<typeof request.request> {
+type CF = (path: string, query?: Record<string, boolean | number | string>) => ReturnType<typeof request.request>;
+
+function create(
+    baseUrl: Rinpi.URLLike
+): Record<K, CF> {
     const base = new URL(typeof baseUrl === "string" ? baseUrl : baseUrl.href);
+    const modules: Record<K, CF> = {} as any;
 
-    return (path, query = {}) => {
-        const url = new URL(base.href);
-        url.pathname = [...base.pathname.split("/"), ...path.split("/").filter(Boolean)].join("/");
+    for (const key of Object.keys(request)) {
+        // eslint-disable-next-line @typescript-eslint/no-loop-func
+        modules[key as K] = (path, query = {}) => {
+            const url = new URL(base.href);
+            url.pathname = [...base.pathname.split("/"), ...path.split("/").filter(Boolean)].join("/");
 
-        const urlObj = addQueryToURL(url, query);
-        return request.request(urlObj, {});
-    };
+            const urlObj = addQueryToURL(url, query);
+            return request[key as K](urlObj, {});
+        };
+    }
+
+    return modules;
 }
 
 function createModule(): Record<K, S> & { create: typeof create } {
