@@ -15,6 +15,7 @@ class MojangAPIError extends Error {
     }
 }
 
+type UnPromise<T> = T extends Promise<infer U> ? U : T;
 type ReqData = UnPromise<ReturnType<typeof request.get>>;
 
 function json(data: ReqData): any {

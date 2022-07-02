@@ -9,12 +9,13 @@ interface Response {
     readonly finalUrl: string;
 }
 
+type URLLike = URL | string;
 type Options = RequestOptions & {
     body?: Record<string, unknown> | unknown[] | string;
     query?: Record<string, boolean | number | string>;
 };
 
-export function request(url: Rinpi.URLLike, options: Options = {}): Promise<Response> {
+export function request(url: URLLike, options: Options = {}): Promise<Response> {
     const urlObj = typeof url === "string" ? new URL(url) : url;
     const protocol = urlObj.protocol === "https:" ? https : http;
 
@@ -59,7 +60,7 @@ export const patch: typeof request = (url, options = {}) => request(url, { ...op
 export const post: typeof request = (url, options = {}) => request(url, { ...options, method: "post" });
 export const put: typeof request = (url, options = {}) => request(url, { ...options, method: "put" });
 
-export function extend(baseUrl: Rinpi.URLLike): ExtendedModule {
+export function extend(baseUrl: URLLike): ExtendedModule {
     const base = new URL(typeof baseUrl === "string" ? baseUrl : baseUrl.href);
     const func: Extended = (path, options = {}) => {
         const url = new URL(base.href);

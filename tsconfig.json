@@ -13,8 +13,7 @@
         "emitDecoratorMetadata": true,
         "skipLibCheck": true,
         "noEmitHelpers": true,
-        "importHelpers": true,
-        "typeRoots": ["node_modules/@types", "src/typings"]
+        "importHelpers": true
     },
     "exclude": [],
     "include": ["src/**/*"]
