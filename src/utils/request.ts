@@ -41,7 +41,7 @@ export function request(url: Rinpi.URLLike, options: Options = {}): Promise<Resp
         });
 
         if (options.body) {
-            req.write(options.body);
+            req.write(JSON.stringify(options.body));
         }
 
         req.on("error", reject);
@@ -69,10 +69,10 @@ export function extend(baseUrl: Rinpi.URLLike): ExtendedModule {
     };
 
     return {
-        delete: func,
-        get: func,
-        patch: func,
-        post: func,
-        put: func
+        delete: (path, options) => func(path, { ...options, method: "delete" }),
+        get: (path, options) => func(path, { ...options, method: "get" }),
+        patch: (path, options) => func(path, { ...options, method: "patch" }),
+        post: (path, options) => func(path, { ...options, method: "post" }),
+        put: (path, options) => func(path, { ...options, method: "put" })
     };
 }
