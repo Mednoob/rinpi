@@ -10,7 +10,7 @@ interface Response {
 }
 
 type Options = RequestOptions & {
-    body?: Record<string, unknown> | string;
+    body?: Record<string, unknown> | unknown[] | string;
     query?: Record<string, boolean | number | string>;
 };
 
