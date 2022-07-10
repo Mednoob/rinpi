@@ -42,7 +42,7 @@ export function request(url: URLLike, options: Options = {}): Promise<Response> 
         });
 
         if (options.body) {
-            req.write(JSON.stringify(options.body));
+            req.write(typeof options.body === "object" ? JSON.stringify(options.body) : options.body);
         }
 
         req.on("error", reject);
