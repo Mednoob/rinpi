@@ -22,7 +22,7 @@
     "homepage": "https://github.com/Clytage/rinpi#readme",
     "eslintConfig": {
         "extends": "@clytage-pkg/eslint-config/typescript",
-        "ignorePatterns": "dist/*",
+        "ignorePatterns": ["dist/*", "publish.js", "package/*"],
         "rules": {
             "@typescript-eslint/naming-convention": "off"
         }
