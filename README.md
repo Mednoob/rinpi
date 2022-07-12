@@ -20,5 +20,6 @@ rinpi.nekosLife.image.neko().then(url => console.log(url));
 - osu! (v1)
 - Mojang (No auth endpoints)
 - Hastebin
+- Danbooru (Post search only)
 
 Want to add more APIs? Just submit a PR!
