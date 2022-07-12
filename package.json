@@ -1,6 +1,6 @@
 {
     "name": "rinpi",
-    "version": "1.0.0-dev",
+    "version": "1.0.0",
     "description": "Collection of API for discord bot",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
