@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
 
       - name: Setup Node.js
-        uses: actions/setup-node@c81d8ad96dab0a834a87f7a0300b154386f2e26a
+        uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516
         with:
           node-version-file: .node-version
           cache: "npm"
