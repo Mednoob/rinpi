@@ -29,7 +29,7 @@
     },
     "devDependencies": {
         "@clytage-pkg/eslint-config": "^1.5.0",
-        "@types/node": "^18.11.10",
+        "@types/node": "^18.11.11",
         "@typescript-eslint/eslint-plugin": "^5.43.0",
         "@typescript-eslint/parser": "^5.43.0",
         "eslint": "^8.27.0",
